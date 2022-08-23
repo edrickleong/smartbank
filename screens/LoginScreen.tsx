@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import * as Linking from "expo-linking";
+import { useEffect, useRef } from "react";
 import { Controller, useForm } from "react-hook-form";
 import {
   ActivityIndicator,
@@ -32,11 +33,16 @@ export default function LoginScreen() {
   const {
     control,
     handleSubmit,
+    setFocus,
     formState: { isSubmitting, isValid },
   } = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     mode: "onChange",
   });
+
+  useEffect(() => {
+    setFocus("email");
+  }, []);
 
   return (
     <SafeAreaView className="flex-1 bg-white pt-1">
@@ -64,7 +70,7 @@ export default function LoginScreen() {
               control={control}
               name="email"
               rules={{ required: true }}
-              render={({ field: { onChange, value } }) => (
+              render={({ field: { onChange, value, ref } }) => (
                 <TextInput
                   className="mt-6 h-14 w-full rounded-xl border-[1px] border-[#E7EAEB] px-3.5"
                   placeholder="Email address"
@@ -72,6 +78,7 @@ export default function LoginScreen() {
                   editable={!isSubmitting}
                   value={value}
                   onChangeText={onChange}
+                  ref={ref}
                 />
               )}
             />
