@@ -44,6 +44,9 @@
   "private": true,
   "name": "smartbank",
   "eslintConfig": {
-    "extends": "universe"
+    "extends": "universe/native",
+    "rules": {
+      "react-hooks/exhaustive-deps": "warn"
+    }
   }
 }

@@ -1,5 +1,5 @@
 import * as Linking from "expo-linking";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { ActivityIndicator } from "react-native";
 
 import { supabase } from "../../supabase";
@@ -23,31 +23,34 @@ interface AuthProviderProps {
 export default function AuthProvider({ children }: AuthProviderProps) {
   const [authStatus, setAuthStatus] = React.useState<AuthStatus>("loading");
 
-  async function extractSessionFromLink(link: string) {
-    const parsedURL = Linking.parse(link.replace("#", "?"));
-    if (parsedURL.queryParams.error_code) return;
-    if (authStatus !== "signed-out") return;
-
-    const refreshToken = parsedURL.queryParams.refresh_token;
-    if (!refreshToken) return;
-
-    const { user } = await supabase.auth.signIn({
-      refreshToken: refreshToken as string,
-    });
-    if (!user) return;
-
-    setAuthStatus("signed-in");
-  }
-
   useEffect(() => {
     const user = supabase.auth.user();
     if (!user) {
       setAuthStatus("signed-out");
-      return;
+    } else {
+      setAuthStatus("signed-in");
     }
-
-    setAuthStatus("signed-in");
   }, []);
+
+  const extractSessionFromLink = useCallback(
+    async (link: string) => {
+      if (authStatus !== "signed-out") return;
+
+      const parsedURL = Linking.parse(link.replace("#", "?"));
+      if (parsedURL.queryParams.error_code) return;
+
+      const refreshToken = parsedURL.queryParams.refresh_token;
+      if (!refreshToken) return;
+
+      const { user } = await supabase.auth.signIn({
+        refreshToken: refreshToken as string,
+      });
+      if (!user) return;
+
+      setAuthStatus("signed-in");
+    },
+    [authStatus]
+  );
 
   useEffect(() => {
     Linking.getInitialURL().then((url) => {
@@ -66,7 +69,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     );
 
     return () => remove();
-  }, []);
+  }, [extractSessionFromLink]);
 
   async function signOut() {
     await supabase.auth.signOut();

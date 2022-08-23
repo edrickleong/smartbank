@@ -43,10 +43,10 @@ export default function PhoneNumberScreen() {
           >
             <View className="flex-1 flex-col">
               <Text className="text-[12px] font-bold text-[#279185]">
-                {"Country"}
+                Country
               </Text>
               <Text className="mt-1 text-[13px] font-medium text-primary-800">
-                {"+44"}
+                +44
               </Text>
             </View>
             <Ionicons name="chevron-down" size={24} color="#2791B5" />
@@ -62,15 +62,15 @@ export default function PhoneNumberScreen() {
           >
             <View className="flex-1 flex-col">
               <Text className="text-[12px] font-bold text-[#279185]">
-                {"Mobile number"}
+                Mobile number
               </Text>
               <TextInput
                 className="mt-1 text-[13px] font-medium text-primary-800"
-                keyboardType={"number-pad"}
-                dataDetectorTypes={"phoneNumber"}
+                keyboardType="number-pad"
+                dataDetectorTypes="phoneNumber"
                 value={mobileNumber}
                 onChangeText={setMobileNumber}
-              ></TextInput>
+              />
             </View>
           </View>
         </View>
@@ -83,7 +83,7 @@ export default function PhoneNumberScreen() {
           )}
           onPress={() => navigation.navigate("PhoneNumber")}
         >
-          <Text className={"text-[16px] font-bold text-white"}>Continue</Text>
+          <Text className="text-[16px] font-bold text-white">Continue</Text>
         </Pressable>
       </View>
     </SafeAreaView>
