@@ -52,11 +52,11 @@ export default function SignUpScreen() {
               value={email}
               onChangeText={setEmail}
             />
-            <Text className="mt-4 w-full text-center text-[13px] font-bold text-[#2B6173]">
+            <Text className="mt-4 w-full text-center text-[13px] font-bold text-primary-500">
               {"Have an account? "}
               <Text
                 onPress={() => navigation.navigate("Login")}
-                className="text-[#2791B5]"
+                className="text-primary-400"
               >
                 Log in here.
               </Text>
@@ -65,18 +65,20 @@ export default function SignUpScreen() {
           <View className="px-4">
             <Text className="mt-4 mb-7 w-full text-center text-[11px] text-black">
               {"By registering, you accept our "}
-              <Text className="font-bold text-[#2791B5]">
+              <Text className="font-bold text-primary-400">
                 Terms and Conditions
               </Text>
               {" and "}
-              <Text className="font-bold text-[#2791B5] ">Privacy Policy</Text>.
-              Your data will be securely encrypted with TLS.
+              <Text className="font-bold text-primary-400 ">
+                Privacy Policy
+              </Text>
+              . Your data will be securely encrypted with TLS.
             </Text>
             <Pressable
               disabled={isDisabled}
               className={classNames(
                 "h-12 w-full items-center justify-center rounded-xl",
-                isDisabled ? "bg-neutral-200" : "bg-[#2B6173]"
+                isDisabled ? "bg-neutral-200" : "bg-primary-500"
               )}
             >
               <Text

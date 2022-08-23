@@ -62,7 +62,7 @@ export default function ConfirmEmailScreen() {
           </Pressable>
           <Pressable
             className={classNames(
-              "h-12 w-full items-center justify-center rounded-xl bg-[#265565]"
+              "h-12 w-full items-center justify-center rounded-xl bg-primary-600"
             )}
           >
             <Text className={classNames("text-[16px] font-bold text-white")}>

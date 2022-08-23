@@ -83,11 +83,11 @@ export default function LoginScreen() {
               )}
             />
 
-            <Text className="mt-4 w-full text-center text-[13px] font-bold text-[#2B6173]">
+            <Text className="mt-4 w-full text-center text-[13px] font-bold text-primary-500">
               {"Don't have an account? "}
               <Text
                 onPress={() => navigation.navigate("SignUp")}
-                className="text-[#2791B5]"
+                className="text-primary-400"
               >
                 Sign Up
               </Text>
@@ -96,18 +96,20 @@ export default function LoginScreen() {
           <View className="px-4">
             <Text className="mt-4 mb-7 w-full text-center text-[11px] text-black">
               {"By registering, you accept our "}
-              <Text className="font-bold text-[#2791B5]">
+              <Text className="font-bold text-primary-400">
                 Terms and Conditions
               </Text>
               {" and "}
-              <Text className="font-bold text-[#2791B5] ">Privacy Policy</Text>.
-              Your data will be securely encrypted with TLS.
+              <Text className="font-bold text-primary-400 ">
+                Privacy Policy
+              </Text>
+              . Your data will be securely encrypted with TLS.
             </Text>
             <Pressable
               disabled={isSubmitting}
               className={classNames(
                 "h-12 w-full flex-row items-center justify-center space-x-2 rounded-xl",
-                isValid ? "bg-[#2B6173]" : "bg-neutral-200"
+                isValid ? "bg-primary-500" : "bg-neutral-200"
               )}
               onPress={handleSubmit(async ({ email }) => {
                 const redirectURL = Linking.createURL("");

@@ -27,7 +27,7 @@ export default function OnBoardingScreen() {
       </View>
       <View>
         <Pressable
-          className="h-12 w-full items-center justify-center rounded-xl bg-[#2B6173]"
+          className="h-12 w-full items-center justify-center rounded-xl bg-primary-500"
           onPress={() => navigation.navigate("SignUp")}
         >
           <Text className="text-[16px] font-semibold text-white">Sign up</Text>
@@ -36,7 +36,7 @@ export default function OnBoardingScreen() {
           className="mt-4 h-12 w-full items-center justify-center rounded-xl bg-neutral-200"
           onPress={() => navigation.navigate("Login")}
         >
-          <Text className="text-[16px] font-semibold text-[#2B6173]">
+          <Text className="text-[16px] font-semibold text-primary-500">
             Log in
           </Text>
         </Pressable>
