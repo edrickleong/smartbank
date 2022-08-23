@@ -42,7 +42,7 @@
   },
   "version": "1.0.0",
   "private": true,
-  "name": "smart-bank",
+  "name": "smartbank",
   "eslintConfig": {
     "extends": "universe"
   }
