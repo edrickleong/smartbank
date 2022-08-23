@@ -6,6 +6,7 @@ import ChooseAccountTypeScreen from "./screens/ChooseAccountTypeScreen";
 import ConfirmEmailScreen from "./screens/ConfirmEmailScreen";
 import LoginScreen from "./screens/LoginScreen";
 import OnBoardingScreen from "./screens/OnBoardingScreen";
+import SelectCountryScreen from "./screens/SelectCountryScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 
@@ -16,6 +17,7 @@ export type RootStackParamList = {
   ConfirmEmail: { email: string };
   Welcome: undefined;
   ChooseAccountType: undefined;
+  SelectCountry: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -37,6 +39,7 @@ export default function App() {
             name="ChooseAccountType"
             component={ChooseAccountTypeScreen}
           />
+          <Stack.Screen name="SelectCountry" component={SelectCountryScreen} />
         </Stack.Navigator>
       </AuthProvider>
     </NavigationContainer>

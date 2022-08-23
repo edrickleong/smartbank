@@ -32,6 +32,7 @@ function AccountCard({ image, title, description }: AccountCardProps) {
         shadowOffset: { width: 0, height: 24 },
         shadowOpacity: 0.15,
       }}
+      onPress={() => navigation.navigate("SelectCountry")}
     >
       <Image className="w-14" resizeMode="contain" source={image} />
       <View className="flex-1 flex-col">
