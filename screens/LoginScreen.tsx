@@ -1,8 +1,15 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useState } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { Controller, useForm } from "react-hook-form";
+import {
+  ActivityIndicator,
+  Alert,
+  Pressable,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { RootStackParamList } from "../App";
@@ -11,11 +18,19 @@ import { classNames } from "../utils/classNames";
 
 type Props = NativeStackScreenProps<RootStackParamList>["navigation"];
 
+type FormData = {
+  email: string;
+};
+
 export default function LoginScreen() {
   const navigation = useNavigation<Props>();
-  const [email, setEmail] = useState<string>();
-
-  const isDisabled = typeof email === "undefined" ? true : email.length === 0;
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitting, isValid },
+  } = useForm<FormData>({
+    mode: "onChange",
+  });
 
   return (
     <SafeAreaView className="flex-1 bg-white pt-1 pb-7">
@@ -32,13 +47,21 @@ export default function LoginScreen() {
         <Text className="mt-2 text-[13px] font-medium text-neutral-600">
           Enter the email address you use to sign in to SmartBank.
         </Text>
-        <TextInput
-          className="mt-6 h-14 w-full rounded-xl border-[1px] border-[#E7EAEB] px-3.5"
-          placeholder="Email address"
-          placeholderTextColor="#2B6173"
-          value={email}
-          onChangeText={setEmail}
+        <Controller
+          control={control}
+          name="email"
+          rules={{ required: true }}
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              className="mt-6 h-14 w-full rounded-xl border-[1px] border-[#E7EAEB] px-3.5"
+              placeholder="Email address"
+              placeholderTextColor="#2B6173"
+              value={value}
+              onChangeText={onChange}
+            />
+          )}
         />
+
         <Text className="mt-4 w-full text-center text-[13px] font-bold text-[#2B6173]">
           {"Don't have an account? "}
           <Text
@@ -58,29 +81,33 @@ export default function LoginScreen() {
           Your data will be securely encrypted with TLS.
         </Text>
         <Pressable
-          disabled={isDisabled}
+          disabled={isSubmitting}
           className={classNames(
-            "h-12 w-full items-center justify-center rounded-xl",
-            isDisabled ? "bg-neutral-200" : "bg-[#2B6173]"
+            "h-12 w-full flex-row space-x-2 items-center justify-center rounded-xl",
+            isValid ? "bg-[#2B6173]" : "bg-neutral-200"
           )}
-          onPress={async () => {
+          onPress={handleSubmit(async (values) => {
             const { error } = await supabase.auth.signIn({
-              email,
+              email: values.email,
             });
 
-            if (error) console.error(error);
+            if (error) {
+              Alert.alert("An error occurred", error.message, [{ text: "OK" }]);
+              return;
+            }
 
             navigation.navigate("ConfirmEmail");
-          }}
+          })}
         >
           <Text
             className={classNames(
               "text-[16px] font-bold",
-              isDisabled ? "text-neutral-400" : "text-white"
+              isValid ? "text-white" : "text-neutral-400"
             )}
           >
             Continue
           </Text>
+          {isSubmitting && <ActivityIndicator />}
         </Pressable>
       </View>
     </SafeAreaView>
