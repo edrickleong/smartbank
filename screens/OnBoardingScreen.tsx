@@ -20,8 +20,9 @@ export default function OnBoardingScreen() {
           Managing your money has never been so easy
         </Text>
         <Image
-          className="mt-10 w-full"
           source={require("../assets/making-your-money.png")}
+          className="mt-10 w-full flex-1"
+          style={{ resizeMode: "contain" }}
         />
       </View>
       <View>
