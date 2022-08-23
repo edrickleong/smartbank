@@ -53,7 +53,8 @@ export default function ConfirmEmailScreen() {
             className={classNames(
               "mb-4 h-12 w-full items-center justify-center rounded-xl bg-[#E8F569]"
             )}
-            onPress={() => Linking.openURL("mailto:")}
+            // TODO: Replace with universal solution. https://github.com/includable/react-native-email-link
+            onPress={() => Linking.openURL("googlegmail://")}
           >
             <Text
               className={classNames("text-[16px] font-bold text-[#134555]")}
