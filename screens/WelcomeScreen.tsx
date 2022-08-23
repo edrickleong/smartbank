@@ -2,15 +2,17 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { LinearGradient } from "expo-linear-gradient";
-import { Image, Pressable, Text, View } from "react-native";
+import { Alert, Image, Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { RootStackParamList } from "../App";
+import { useAuth } from "../features/auth/AuthContext";
 import { classNames } from "../utils/classNames";
 
 type Props = NativeStackScreenProps<RootStackParamList>["navigation"];
 
 export default function WelcomeScreen() {
+  const { signOut } = useAuth();
   const navigation = useNavigation<Props>();
 
   return (
@@ -22,7 +24,19 @@ export default function WelcomeScreen() {
         <View className="h-11 w-full justify-center">
           <Pressable
             className="absolute top-0 left-0 h-11 w-11 items-center justify-center"
-            onPress={() => navigation.goBack()}
+            onPress={() => {
+              Alert.alert(
+                "Log out",
+                "You will be returned to the login screen",
+                [
+                  {
+                    text: "Cancel",
+                    style: "cancel",
+                  },
+                  { text: "OK", onPress: () => signOut() },
+                ]
+              );
+            }}
           >
             <Ionicons name="arrow-back" size={24} color="white" />
           </Pressable>

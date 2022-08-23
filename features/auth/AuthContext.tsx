@@ -1,25 +1,18 @@
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import * as Linking from "expo-linking";
-import React from "react";
+import React, { useEffect } from "react";
 import { ActivityIndicator } from "react-native";
 
-import { RootStackParamList } from "../../App";
 import { supabase } from "../../supabase";
 
-type AuthStatus = "SIGNED_IN" | "SIGNED_OUT" | "LOADING";
-
-type Props = NativeStackScreenProps<RootStackParamList>["navigation"];
+type AuthStatus = "loading" | "signed-in" | "signed-out";
 
 interface AuthContextValue {
   authStatus: AuthStatus;
-  loginError: boolean;
   signOut: () => void;
 }
 
 const AuthContext = React.createContext<AuthContextValue>({
-  loginError: false,
-  authStatus: "SIGNED_OUT",
+  authStatus: "loading",
   signOut: () => {},
 });
 
@@ -28,26 +21,35 @@ interface AuthProviderProps {
 }
 
 export default function AuthProvider({ children }: AuthProviderProps) {
-  const [authStatus, setAuthStatus] = React.useState<AuthStatus>("SIGNED_OUT");
-  const [loginError, setLoginError] = React.useState(false);
-  const navigation = useNavigation<Props>();
+  const [authStatus, setAuthStatus] = React.useState<AuthStatus>("loading");
 
   async function extractSessionFromLink(link: string) {
-    const parsedURL = Linking.parse(link.replace("#", "?")!);
+    const parsedURL = Linking.parse(link.replace("#", "?"));
+    if (parsedURL.queryParams.error_code) return;
+    if (authStatus !== "signed-out") return;
 
-    if (parsedURL.queryParams.refresh_token) {
-      await supabase.auth.signIn({
-        refreshToken: parsedURL.queryParams.refresh_token as string,
-      });
+    const refreshToken = parsedURL.queryParams.refresh_token;
+    if (!refreshToken) return;
 
-      navigation.navigate("Welcome");
-      setLoginError(false);
-    } else if (parsedURL.queryParams.error_code) {
-      setLoginError(true);
-    }
+    const { user } = await supabase.auth.signIn({
+      refreshToken: refreshToken as string,
+    });
+    if (!user) return;
+
+    setAuthStatus("signed-in");
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
+    const user = supabase.auth.user();
+    if (!user) {
+      setAuthStatus("signed-out");
+      return;
+    }
+
+    setAuthStatus("signed-in");
+  }, []);
+
+  useEffect(() => {
     Linking.getInitialURL().then((url) => {
       if (url) {
         extractSessionFromLink(url!);
@@ -66,13 +68,14 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     return () => remove();
   }, []);
 
-  function signOut() {
-    supabase.auth.signOut();
+  async function signOut() {
+    await supabase.auth.signOut();
+    setAuthStatus("signed-out");
   }
 
   return (
-    <AuthContext.Provider value={{ authStatus, signOut, loginError }}>
-      {authStatus === "LOADING" ? <ActivityIndicator /> : children}
+    <AuthContext.Provider value={{ authStatus, signOut }}>
+      {authStatus === "loading" ? <ActivityIndicator /> : children}
     </AuthContext.Provider>
   );
 }
