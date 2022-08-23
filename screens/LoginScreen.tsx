@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import * as Linking from "expo-linking";
@@ -12,6 +13,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { z } from "zod";
 
 import { RootStackParamList } from "../App";
 import { supabase } from "../supabase";
@@ -19,9 +21,9 @@ import { classNames } from "../utils/classNames";
 
 type Props = NativeStackScreenProps<RootStackParamList>["navigation"];
 
-type FormData = {
-  email: string;
-};
+const schema = z.object({
+  email: z.string().email(),
+});
 
 export default function LoginScreen() {
   const navigation = useNavigation<Props>();
@@ -29,7 +31,8 @@ export default function LoginScreen() {
     control,
     handleSubmit,
     formState: { isSubmitting, isValid },
-  } = useForm<FormData>({
+  } = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
     mode: "onChange",
   });
 
@@ -57,6 +60,7 @@ export default function LoginScreen() {
               className="mt-6 h-14 w-full rounded-xl border-[1px] border-[#E7EAEB] px-3.5"
               placeholder="Email address"
               placeholderTextColor="#2B6173"
+              editable={!isSubmitting}
               value={value}
               onChangeText={onChange}
             />
@@ -87,11 +91,11 @@ export default function LoginScreen() {
             "h-12 w-full flex-row items-center justify-center space-x-2 rounded-xl",
             isValid ? "bg-[#2B6173]" : "bg-neutral-200"
           )}
-          onPress={handleSubmit(async (values) => {
+          onPress={handleSubmit(async ({ email }) => {
             const redirectURL = Linking.createURL("");
 
             const { error } = await supabase.auth.signIn(
-              { email: values.email },
+              { email },
               { redirectTo: redirectURL }
             );
 
@@ -100,7 +104,9 @@ export default function LoginScreen() {
               return;
             }
 
-            navigation.navigate("ConfirmEmail");
+            console.log({ email });
+
+            navigation.navigate("ConfirmEmail", { email });
           })}
         >
           <Text

@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image, Pressable, Text, View } from "react-native";
@@ -8,9 +8,17 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { RootStackParamList } from "../App";
 import { classNames } from "../utils/classNames";
 
+type RouteProps = NativeStackScreenProps<
+  RootStackParamList,
+  "ConfirmEmail"
+>["route"];
+
 type Props = NativeStackScreenProps<RootStackParamList>["navigation"];
 
 export default function ConfirmEmailScreen() {
+  const {
+    params: { email },
+  } = useRoute<RouteProps>();
   const navigation = useNavigation<Props>();
 
   return (
@@ -39,7 +47,7 @@ export default function ConfirmEmailScreen() {
             Confirm your email
           </Text>
           <Text className="mt-2 mb-8 text-center text-[13px] font-medium text-neutral-300">
-            We just send you an email to office@designmesocial.com
+            {`We just send you an email to ${email}`}
           </Text>
           <Pressable
             className={classNames(

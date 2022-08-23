@@ -12,7 +12,7 @@ export type RootStackParamList = {
   OnBoarding: undefined;
   Login: undefined;
   SignUp: undefined;
-  ConfirmEmail: undefined;
+  ConfirmEmail: { email: string };
   Welcome: undefined;
 };
 
