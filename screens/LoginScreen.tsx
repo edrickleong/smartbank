@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import * as Linking from "expo-linking";
 import { Controller, useForm } from "react-hook-form";
 import {
   ActivityIndicator,
@@ -83,13 +84,16 @@ export default function LoginScreen() {
         <Pressable
           disabled={isSubmitting}
           className={classNames(
-            "h-12 w-full flex-row space-x-2 items-center justify-center rounded-xl",
+            "h-12 w-full flex-row items-center justify-center space-x-2 rounded-xl",
             isValid ? "bg-[#2B6173]" : "bg-neutral-200"
           )}
           onPress={handleSubmit(async (values) => {
-            const { error } = await supabase.auth.signIn({
-              email: values.email,
-            });
+            const redirectURL = Linking.createURL("");
+
+            const { error } = await supabase.auth.signIn(
+              { email: values.email },
+              { redirectTo: redirectURL }
+            );
 
             if (error) {
               Alert.alert("An error occurred", error.message, [{ text: "OK" }]);
