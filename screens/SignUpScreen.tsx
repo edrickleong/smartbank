@@ -6,10 +6,7 @@ import { Pressable, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { RootStackParamList } from "../App";
-
-export function classNames(...classes: string[]) {
-  return classes.join(" ");
-}
+import { classNames } from "../utils/classNames";
 
 type Props = NativeStackScreenProps<RootStackParamList>["navigation"];
 
