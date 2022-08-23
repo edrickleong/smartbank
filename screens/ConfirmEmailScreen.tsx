@@ -19,9 +19,9 @@ export default function ConfirmEmailScreen() {
       className="flex-1"
     >
       <SafeAreaView className="flex-1 pt-1 pb-7">
-        <View className="w-full h-11 justify-center">
+        <View className="h-11 w-full justify-center">
           <Pressable
-            className="absolute top-0 left-0 w-11 h-11 items-center justify-center"
+            className="absolute top-0 left-0 h-11 w-11 items-center justify-center"
             onPress={() => navigation.goBack()}
           >
             <Ionicons name="arrow-back" size={24} color="white" />
@@ -30,34 +30,34 @@ export default function ConfirmEmailScreen() {
         <View className="flex-1">
           <Image
             style={{ resizeMode: "cover" }}
-            className="flex-1 w-full"
+            className="w-full flex-1"
             source={require("../assets/planes.png")}
           />
         </View>
         <View className="px-4">
-          <Text className="mt-1 text-[34px] font-bold text-white text-center">
+          <Text className="mt-1 text-center text-[34px] font-bold text-white">
             Confirm your email
           </Text>
-          <Text className="mt-2 font-medium text-neutral-300 text-center text-[13px] mb-8">
+          <Text className="mt-2 mb-8 text-center text-[13px] font-medium text-neutral-300">
             We just send you an email to office@designmesocial.com
           </Text>
           <Pressable
             className={classNames(
-              "w-full items-center justify-center rounded-xl h-12 bg-[#E8F569] mb-4"
+              "mb-4 h-12 w-full items-center justify-center rounded-xl bg-[#E8F569]"
             )}
           >
             <Text
-              className={classNames("font-bold text-[16px] text-[#134555]")}
+              className={classNames("text-[16px] font-bold text-[#134555]")}
             >
               Open email app
             </Text>
           </Pressable>
           <Pressable
             className={classNames(
-              "w-full items-center justify-center rounded-xl h-12 bg-[#265565]"
+              "h-12 w-full items-center justify-center rounded-xl bg-[#265565]"
             )}
           >
-            <Text className={classNames("font-bold text-[16px] text-white")}>
+            <Text className={classNames("text-[16px] font-bold text-white")}>
               I didn't receive my email
             </Text>
           </Pressable>
