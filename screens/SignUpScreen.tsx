@@ -13,7 +13,7 @@ export function classNames(...classes: string[]) {
 
 type Props = NativeStackScreenProps<RootStackParamList>["navigation"];
 
-export default function LoginScreen() {
+export default function SignUpScreen() {
   const navigation = useNavigation<Props>();
   const [email, setEmail] = useState<string>();
 
@@ -30,9 +30,11 @@ export default function LoginScreen() {
         </Pressable>
       </View>
       <View className="flex-1 px-4">
-        <Text className="mt-1 text-[34px] font-bold text-[#0C212C]">Login</Text>
+        <Text className="mt-1 text-[34px] font-bold text-[#0C212C]">
+          What's your email?
+        </Text>
         <Text className="mt-2 font-medium text-neutral-600 text-[13px]">
-          Enter the email address you use to sign in to SmartBank.
+          Enter the email address you’d like to use to sign in to SmartBank.
         </Text>
         <TextInput
           className="w-full h-14 border-[1px] border-[#E7EAEB] mt-6 px-3.5 rounded-xl"
@@ -42,12 +44,12 @@ export default function LoginScreen() {
           onChangeText={setEmail}
         />
         <Text className="w-full text-center mt-4 font-bold text-[#2B6173] text-[13px]">
-          {"Don't have an account? "}
+          {"Have an account? "}
           <Text
-            onPress={() => navigation.navigate("SignUp")}
+            onPress={() => navigation.navigate("Login")}
             className="text-[#2791B5]"
           >
-            Sign Up
+            Log in here.
           </Text>
         </Text>
       </View>

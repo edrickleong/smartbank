@@ -25,7 +25,10 @@ export default function OnBoardingScreen() {
         />
       </View>
       <View>
-        <Pressable className="w-full bg-[#2B6173] h-12 items-center justify-center rounded-xl">
+        <Pressable
+          className="w-full bg-[#2B6173] h-12 items-center justify-center rounded-xl"
+          onPress={() => navigation.navigate("SignUp")}
+        >
           <Text className="font-semibold text-[16px] text-white">Sign up</Text>
         </Pressable>
         <Pressable
