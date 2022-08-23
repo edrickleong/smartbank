@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@expo/vector-icons": "13.0.0",
     "@react-navigation/native": "6.0.11",
     "@react-navigation/native-stack": "6.7.0",
     "expo": "46.0.8",

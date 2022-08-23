@@ -13,7 +13,7 @@ export default function OnBoardingScreen() {
   return (
     <SafeAreaView className="flex-1 bg-white py-7 px-4">
       <View className="flex-1">
-        <Text className="font-medium text-[#808C91] text-[13px]">
+        <Text className="font-medium text-neutral-600 text-[13px]">
           Welcome to SmartBank
         </Text>
         <Text className="mt-1.5 text-[34px] font-bold text-[#0C212C]">
@@ -28,7 +28,10 @@ export default function OnBoardingScreen() {
         <Pressable className="w-full bg-[#2B6173] h-12 items-center justify-center rounded-xl">
           <Text className="font-semibold text-[16px] text-white">Sign up</Text>
         </Pressable>
-        <Pressable className="mt-4 w-full bg-[#E7EAEB] h-12 items-center justify-center rounded-xl">
+        <Pressable
+          className="mt-4 w-full bg-neutral-200 h-12 items-center justify-center rounded-xl"
+          onPress={() => navigation.navigate("Login")}
+        >
           <Text className="font-semibold text-[16px] text-[#2B6173]">
             Log in
           </Text>
