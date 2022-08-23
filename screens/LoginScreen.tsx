@@ -6,6 +6,7 @@ import { Pressable, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { RootStackParamList } from "../App";
+import { supabase } from "../supabase";
 import { classNames } from "../utils/classNames";
 
 type Props = NativeStackScreenProps<RootStackParamList>["navigation"];
@@ -62,7 +63,15 @@ export default function LoginScreen() {
             "h-12 w-full items-center justify-center rounded-xl",
             isDisabled ? "bg-neutral-200" : "bg-[#2B6173]"
           )}
-          onPress={() => navigation.navigate("ConfirmEmail")}
+          onPress={async () => {
+            const { error } = await supabase.auth.signIn({
+              email,
+            });
+
+            if (error) console.error(error);
+
+            navigation.navigate("ConfirmEmail");
+          }}
         >
           <Text
             className={classNames(
