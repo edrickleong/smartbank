@@ -73,6 +73,8 @@ export default function SignUpScreen() {
               render={({ field: { onChange, value, ref } }) => (
                 <TextInput
                   className="mt-6 h-14 w-full rounded-xl border-[1px] border-[#E7EAEB] px-3.5"
+                  textContentType="emailAddress"
+                  keyboardType="email-address"
                   placeholder="Email address"
                   placeholderTextColor="#2B6173"
                   editable={!isSubmitting}

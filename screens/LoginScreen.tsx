@@ -73,6 +73,8 @@ export default function LoginScreen() {
               render={({ field: { onChange, value, ref } }) => (
                 <TextInput
                   className="mt-6 h-14 w-full rounded-xl border-[1px] border-[#E7EAEB] px-3.5"
+                  textContentType="emailAddress"
+                  keyboardType="email-address"
                   placeholder="Email address"
                   placeholderTextColor="#2B6173"
                   editable={!isSubmitting}
@@ -94,17 +96,6 @@ export default function LoginScreen() {
             </Text>
           </View>
           <View className="px-4">
-            <Text className="mt-4 mb-7 w-full text-center text-[11px] text-black">
-              {"By registering, you accept our "}
-              <Text className="font-bold text-primary-400">
-                Terms and Conditions
-              </Text>
-              {" and "}
-              <Text className="font-bold text-primary-400 ">
-                Privacy Policy
-              </Text>
-              . Your data will be securely encrypted with TLS.
-            </Text>
             <Pressable
               disabled={isSubmitting}
               className={classNames(
