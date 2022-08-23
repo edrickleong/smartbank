@@ -27,7 +27,7 @@ const countries = [
 export default function SelectCountryScreen() {
   const navigation = useNavigation<Props>();
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-  const [searchText, setSearchText] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
 
   return (
     <BottomSheetModalProvider>
@@ -60,7 +60,7 @@ export default function SelectCountryScreen() {
                   {"Country"}
                 </Text>
                 <Text className="mt-1 text-[16px] font-bold text-black">
-                  {"United Kingdom"}
+                  {selectedCountry}
                 </Text>
               </View>
               <Ionicons name="chevron-down-circle" size={24} color="#2791B5" />
@@ -91,42 +91,87 @@ export default function SelectCountryScreen() {
           shadowOpacity: 1,
         }}
       >
-        <View className="flex-1 items-center rounded-t-[10px]">
-          <View className="h-[62px] w-full flex-row items-center space-x-2.5 border-b-[1px] border-[#AEAFAF] px-4 pt-4 pb-2">
-            <View className="h-full flex-1 flex-row items-center rounded-[10px] bg-[#767680]/[.12] px-2">
-              <TextInput
-                className="flex-1 text-[17px]"
-                placeholder="Search"
-                placeholderTextColor="#808085"
-                value={searchText}
-                onChangeText={setSearchText}
-              />
-            </View>
-            <Text
-              className="text-[17px] text-[#134555]"
-              onPress={() => bottomSheetModalRef.current?.close()}
-            >
-              Cancel
-            </Text>
-          </View>
-          <View className="w-full flex-1 bg-[#F9FAFA] px-4">
-            {countries
-              .filter((c) => c.includes(searchText))
-              .map((c) => (
-                <Country country={c} key={c} />
-              ))}
-          </View>
-        </View>
+        <SelectCountrySheet
+          selectedCountry={selectedCountry}
+          onSelectCountry={setSelectedCountry}
+          onClose={() => bottomSheetModalRef.current?.close()}
+        />
       </BottomSheetModal>
     </BottomSheetModalProvider>
   );
 }
 
-function Country({ country }: { country: string }) {
+function SelectCountrySheet(props: {
+  onClose: () => void;
+  selectedCountry: string;
+  onSelectCountry: (country: string) => void;
+}) {
+  const [searchText, setSearchText] = useState("");
+
   return (
-    <View className="h-24 flex-row items-center space-x-4 border-b-[1px] border-neutral-200 px-4">
+    <View className="flex-1 items-center rounded-t-[10px]">
+      <View className="h-[62px] w-full flex-row items-center space-x-2.5 border-b-[1px] border-[#AEAFAF] px-4 pt-4 pb-2">
+        <View className="h-full flex-1 flex-row items-center rounded-[10px] bg-[#767680]/[.12] px-2">
+          <TextInput
+            className="flex-1 text-[17px]"
+            placeholder="Search"
+            placeholderTextColor="#808085"
+            value={searchText}
+            onChangeText={setSearchText}
+          />
+        </View>
+        <Text className="text-[17px] text-[#134555]" onPress={props.onClose}>
+          Cancel
+        </Text>
+      </View>
+      <View className="mt-6 w-full flex-1 bg-[#F9FAFA] px-4">
+        {countries
+          .filter((c) => c.includes(searchText))
+          .map((c) => (
+            <Country
+              key={c}
+              country={c}
+              isSelected={c === props.selectedCountry}
+              onSelect={() => {
+                props.onSelectCountry(c);
+                props.onClose();
+              }}
+            />
+          ))}
+      </View>
+    </View>
+  );
+}
+
+function Country({
+  country,
+  isSelected,
+  onSelect,
+}: {
+  country: string;
+  isSelected: boolean;
+  onSelect: () => void;
+}) {
+  return (
+    <Pressable
+      className={classNames(
+        "h-24 flex-row items-center space-x-4 border-[1px] px-4",
+        isSelected
+          ? "rounded-lg border-primary-400 bg-white"
+          : "border-transparent border-b-neutral-200 "
+      )}
+      style={
+        isSelected && {
+          shadowColor: "rgb(185, 185, 185)",
+          shadowRadius: 40,
+          shadowOffset: { width: 0, height: 20 },
+          shadowOpacity: 0.25,
+        }
+      }
+      onPress={onSelect}
+    >
       <View className="h-[66px] w-[66px] rounded-3xl bg-blue-200" />
       <Text className="text-[16px] font-bold">{country}</Text>
-    </View>
+    </Pressable>
   );
 }
