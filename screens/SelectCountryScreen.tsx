@@ -71,10 +71,9 @@ export default function SelectCountryScreen() {
               "h-12 w-full items-center justify-center rounded-xl",
               "bg-primary-500"
             )}
+            onPress={() => navigation.navigate("PhoneNumber")}
           >
-            <Text className={classNames("text-[16px] font-bold", "text-white")}>
-              Continue
-            </Text>
+            <Text className={"text-[16px] font-bold text-white"}>Continue</Text>
           </Pressable>
         </View>
       </SafeAreaView>

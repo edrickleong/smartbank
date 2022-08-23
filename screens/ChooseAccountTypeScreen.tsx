@@ -14,40 +14,6 @@ import { RootStackParamList } from "../App";
 
 type Props = NativeStackScreenProps<RootStackParamList>["navigation"];
 
-type AccountCardProps = {
-  image: ImageSourcePropType;
-  title: string;
-  description: string;
-};
-
-function AccountCard({ image, title, description }: AccountCardProps) {
-  const navigation = useNavigation<Props>();
-
-  return (
-    <Pressable
-      className="mt-4 h-24 w-full flex-row items-center space-x-2.5 rounded-lg border-[1px] border-[#EAEAEA] bg-white px-2"
-      style={{
-        shadowColor: "rgb(168, 175, 182)",
-        shadowRadius: 32,
-        shadowOffset: { width: 0, height: 24 },
-        shadowOpacity: 0.15,
-      }}
-      onPress={() => navigation.navigate("SelectCountry")}
-    >
-      <Image className="w-14" resizeMode="contain" source={image} />
-      <View className="flex-1 flex-col">
-        <Text className="text-[16px] font-semibold text-[#0C212C]">
-          {title}
-        </Text>
-        <Text className="mt-1 text-[13px] font-medium text-neutral-600">
-          {description}
-        </Text>
-      </View>
-      <Ionicons name="chevron-forward" size={24} color="#2791B5" />
-    </Pressable>
-  );
-}
-
 export default function ChooseAccountTypeScreen() {
   const navigation = useNavigation<Props>();
 
@@ -82,5 +48,39 @@ export default function ChooseAccountTypeScreen() {
         </View>
       </View>
     </SafeAreaView>
+  );
+}
+
+type AccountCardProps = {
+  image: ImageSourcePropType;
+  title: string;
+  description: string;
+};
+
+function AccountCard({ image, title, description }: AccountCardProps) {
+  const navigation = useNavigation<Props>();
+
+  return (
+    <Pressable
+      className="mt-4 h-24 w-full flex-row items-center space-x-2.5 rounded-lg border-[1px] border-[#EAEAEA] bg-white px-2"
+      style={{
+        shadowColor: "rgb(168, 175, 182)",
+        shadowRadius: 32,
+        shadowOffset: { width: 0, height: 24 },
+        shadowOpacity: 0.15,
+      }}
+      onPress={() => navigation.navigate("SelectCountry")}
+    >
+      <Image className="w-14" resizeMode="contain" source={image} />
+      <View className="flex-1 flex-col">
+        <Text className="text-[16px] font-semibold text-[#0C212C]">
+          {title}
+        </Text>
+        <Text className="mt-1 text-[13px] font-medium text-neutral-600">
+          {description}
+        </Text>
+      </View>
+      <Ionicons name="chevron-forward" size={24} color="#2791B5" />
+    </Pressable>
   );
 }
