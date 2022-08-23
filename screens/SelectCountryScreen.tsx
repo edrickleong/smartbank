@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import {
+  BottomSheetFlatList,
   BottomSheetModal,
   BottomSheetModalProvider,
 } from "@gorhom/bottom-sheet";
@@ -57,7 +58,7 @@ export default function SelectCountryScreen() {
             >
               <View className="flex-1 flex-col">
                 <Text className="text-[12px] font-bold text-[#279185]">
-                  {"Country"}
+                  Country
                 </Text>
                 <Text className="mt-1 text-[16px] font-bold text-black">
                   {selectedCountry}
@@ -73,7 +74,7 @@ export default function SelectCountryScreen() {
             )}
             onPress={() => navigation.navigate("PhoneNumber")}
           >
-            <Text className={"text-[16px] font-bold text-white"}>Continue</Text>
+            <Text className="text-[16px] font-bold text-white">Continue</Text>
           </Pressable>
         </View>
       </SafeAreaView>
@@ -123,20 +124,22 @@ function SelectCountrySheet(props: {
           Cancel
         </Text>
       </View>
-      <View className="mt-6 w-full flex-1 bg-[#F9FAFA] px-4">
-        {countries
-          .filter((c) => c.includes(searchText))
-          .map((c) => (
+      <View className="w-full flex-1 bg-[#F9FAFA]">
+        <BottomSheetFlatList<string>
+          style={{ paddingHorizontal: 16, paddingTop: 24 }}
+          data={countries.filter((c) => c.includes(searchText))}
+          renderItem={({ item: country }) => (
             <Country
-              key={c}
-              country={c}
-              isSelected={c === props.selectedCountry}
+              key={country}
+              country={country}
+              isSelected={country === props.selectedCountry}
               onSelect={() => {
-                props.onSelectCountry(c);
+                props.onSelectCountry(country);
                 props.onClose();
               }}
             />
-          ))}
+          )}
+        />
       </View>
     </View>
   );
