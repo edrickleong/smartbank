@@ -2,6 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import AuthProvider from "./features/auth/AuthContext";
+import ChooseAccountTypeScreen from "./screens/ChooseAccountTypeScreen";
 import ConfirmEmailScreen from "./screens/ConfirmEmailScreen";
 import LoginScreen from "./screens/LoginScreen";
 import OnBoardingScreen from "./screens/OnBoardingScreen";
@@ -14,6 +15,7 @@ export type RootStackParamList = {
   SignUp: undefined;
   ConfirmEmail: { email: string };
   Welcome: undefined;
+  ChooseAccountType: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -31,6 +33,10 @@ export default function App() {
           <Stack.Screen name="SignUp" component={SignUpScreen} />
           <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
           <Stack.Screen name="Welcome" component={WelcomeScreen} />
+          <Stack.Screen
+            name="ChooseAccountType"
+            component={ChooseAccountTypeScreen}
+          />
         </Stack.Navigator>
       </AuthProvider>
     </NavigationContainer>

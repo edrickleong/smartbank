@@ -47,7 +47,7 @@ export default function ConfirmEmailScreen() {
             Confirm your email
           </Text>
           <Text className="mt-2 mb-8 text-center text-[13px] font-medium text-neutral-300">
-            {`We just send you an email to ${email}`}
+            {`We just sent you an email to ${email}`}
           </Text>
           <Pressable
             className={classNames(

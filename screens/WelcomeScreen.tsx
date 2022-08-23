@@ -46,6 +46,7 @@ export default function WelcomeScreen() {
             className={classNames(
               "mb-4 h-12 w-full items-center justify-center rounded-xl bg-[#E8F569]"
             )}
+            onPress={() => navigation.navigate("ChooseAccountType")}
           >
             <Text
               className={classNames("text-[16px] font-bold text-[#134555]")}
