@@ -5,15 +5,12 @@ import {
   BottomSheetModalProvider,
 } from "@gorhom/bottom-sheet";
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useRef, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { RootStackParamList } from "../App";
+import { MainNavigationProps } from "../navigation/MainStack";
 import { classNames } from "../utils/classNames";
-
-type Props = NativeStackScreenProps<RootStackParamList>["navigation"];
 
 const countries = [
   "United Kingdom",
@@ -26,7 +23,7 @@ const countries = [
 ];
 
 export default function SelectCountryScreen() {
-  const navigation = useNavigation<Props>();
+  const navigation = useNavigation<MainNavigationProps>();
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
 

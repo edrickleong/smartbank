@@ -1,9 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import * as Linking from "expo-linking";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import {
   ActivityIndicator,
@@ -18,18 +17,16 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { z } from "zod";
 
-import { RootStackParamList } from "../App";
+import { LoginNavigationProps } from "../navigation/LoginStack";
 import { supabase } from "../supabase";
 import { classNames } from "../utils/classNames";
-
-type Props = NativeStackScreenProps<RootStackParamList>["navigation"];
 
 const schema = z.object({
   email: z.string().email(),
 });
 
 export default function SignUpScreen() {
-  const navigation = useNavigation<Props>();
+  const navigation = useNavigation<LoginNavigationProps>();
   const {
     control,
     handleSubmit,

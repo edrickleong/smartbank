@@ -5,21 +5,22 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Image, Linking, Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { RootStackParamList } from "../App";
+import {
+  LoginNavigationProps,
+  LoginStackParams,
+} from "../navigation/LoginStack";
 import { classNames } from "../utils/classNames";
 
 type RouteProps = NativeStackScreenProps<
-  RootStackParamList,
+  LoginStackParams,
   "ConfirmEmail"
 >["route"];
-
-type Props = NativeStackScreenProps<RootStackParamList>["navigation"];
 
 export default function ConfirmEmailScreen() {
   const {
     params: { email },
   } = useRoute<RouteProps>();
-  const navigation = useNavigation<Props>();
+  const navigation = useNavigation<LoginNavigationProps>();
 
   return (
     <LinearGradient

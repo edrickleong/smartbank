@@ -1,6 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import {
   Image,
   ImageSourcePropType,
@@ -10,12 +9,10 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { RootStackParamList } from "../App";
-
-type Props = NativeStackScreenProps<RootStackParamList>["navigation"];
+import { MainNavigationProps } from "../navigation/MainStack";
 
 export default function ChooseAccountTypeScreen() {
-  const navigation = useNavigation<Props>();
+  const navigation = useNavigation<MainNavigationProps>();
 
   return (
     <SafeAreaView className="flex-1 bg-neutral-50 pt-1 pb-7">
@@ -58,7 +55,7 @@ type AccountCardProps = {
 };
 
 function AccountCard({ image, title, description }: AccountCardProps) {
-  const navigation = useNavigation<Props>();
+  const navigation = useNavigation<MainNavigationProps>();
 
   return (
     <Pressable

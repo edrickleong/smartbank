@@ -1,18 +1,15 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { RootStackParamList } from "../App";
 import OTPInput from "../components/OTPInput";
+import { MainNavigationProps } from "../navigation/MainStack";
 import { classNames } from "../utils/classNames";
 
-type Props = NativeStackScreenProps<RootStackParamList>["navigation"];
-
 export default function OneTimePasswordScreen() {
-  const navigation = useNavigation<Props>();
+  const navigation = useNavigation<MainNavigationProps>();
   const [oneTimePassword, setOneTimePassword] = useState("");
 
   const isValid = oneTimePassword.length === 6;
