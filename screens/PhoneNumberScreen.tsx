@@ -15,7 +15,7 @@ export default function PhoneNumberScreen() {
   const [mobileNumber, setMobileNumber] = useState("");
 
   return (
-    <SafeAreaView className="flex-1 bg-[#F9FAFA] pt-1 pb-7">
+    <SafeAreaView className="flex-1 bg-neutral-50 pt-1 pb-7">
       <View className="h-11 w-full justify-center">
         <Pressable
           className="absolute top-0 left-0 h-11 w-11 items-center justify-center"

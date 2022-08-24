@@ -15,8 +15,10 @@ export default function OneTimePasswordScreen() {
   const navigation = useNavigation<Props>();
   const [oneTimePassword, setOneTimePassword] = useState("");
 
+  const isValid = oneTimePassword.length === 6;
+
   return (
-    <SafeAreaView className="flex-1 bg-[#F9FAFA] pt-1 pb-7">
+    <SafeAreaView className="flex-1 bg-neutral-50 pt-1 pb-7">
       <View className="h-11 w-full justify-center">
         <Pressable
           className="absolute top-0 left-0 h-11 w-11 items-center justify-center"
@@ -38,9 +40,10 @@ export default function OneTimePasswordScreen() {
       </View>
       <View className="px-4">
         <Pressable
+          disabled={!isValid}
           className={classNames(
             "h-12 w-full items-center justify-center rounded-xl",
-            "bg-primary-500"
+            isValid ? "bg-primary-500" : "bg-neutral-200"
           )}
           onPress={() => navigation.navigate("PhoneNumber")}
         >
