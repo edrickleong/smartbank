@@ -14,6 +14,8 @@ export default function PhoneNumberScreen() {
   const navigation = useNavigation<Props>();
   const [mobileNumber, setMobileNumber] = useState("");
 
+  const isValid = mobileNumber.length !== 0;
+
   return (
     <SafeAreaView className="flex-1 bg-neutral-50 pt-1 pb-7">
       <View className="h-11 w-full justify-center">
@@ -33,7 +35,7 @@ export default function PhoneNumberScreen() {
         </Text>
         <View className="mt-4 flex-1 flex-row space-x-1">
           <Pressable
-            className="h-14 flex-row items-center space-x-1 rounded-lg border-[1px] border-[#EAEAEA] bg-white px-3.5"
+            className="h-14 flex-col rounded-lg border-[1px] border-[#EAEAEA] bg-white px-3.5 py-2"
             style={{
               shadowColor: "rgb(168, 175, 182)",
               shadowRadius: 32,
@@ -41,18 +43,17 @@ export default function PhoneNumberScreen() {
               shadowOpacity: 0.15,
             }}
           >
-            <View className="flex-1 flex-col">
-              <Text className="text-[12px] font-bold text-[#279185]">
-                Country
-              </Text>
-              <Text className="mt-1 text-[13px] font-medium text-primary-800">
-                +44
+            <Text className="text-[12px] font-bold text-[#279185]">
+              Country
+            </Text>
+            <View className="space-between mt-1 flex-row">
+              <Text className="text-[16px] font-bold text-primary-800">
+                🇬🇧+44
               </Text>
             </View>
-            <Ionicons name="chevron-down" size={24} color="#2791B5" />
           </Pressable>
           <View
-            className="h-14 flex-1 flex-row items-center rounded-lg border-[1px] border-[#EAEAEA] bg-white px-3.5"
+            className="h-14 flex-1 flex-col rounded-lg border-[1px] border-[#EAEAEA] bg-white py-2 px-3.5"
             style={{
               shadowColor: "rgb(168, 175, 182)",
               shadowRadius: 32,
@@ -60,26 +61,25 @@ export default function PhoneNumberScreen() {
               shadowOpacity: 0.15,
             }}
           >
-            <View className="flex-1 flex-col">
-              <Text className="text-[12px] font-bold text-[#279185]">
-                Mobile number
-              </Text>
-              <TextInput
-                className="mt-1 text-[13px] font-medium text-primary-800"
-                keyboardType="number-pad"
-                dataDetectorTypes="phoneNumber"
-                value={mobileNumber}
-                onChangeText={setMobileNumber}
-              />
-            </View>
+            <Text className="text-[12px] font-bold text-[#279185]">
+              Mobile number
+            </Text>
+            <TextInput
+              className="mt-1 text-[16px] font-bold text-primary-800"
+              keyboardType="number-pad"
+              dataDetectorTypes="phoneNumber"
+              value={mobileNumber}
+              onChangeText={setMobileNumber}
+            />
           </View>
         </View>
       </View>
       <View className="px-4">
         <Pressable
+          disabled={!isValid}
           className={classNames(
             "h-12 w-full items-center justify-center rounded-xl",
-            "bg-primary-500"
+            isValid ? "bg-primary-500" : "bg-neutral-200"
           )}
           onPress={() => navigation.navigate("OneTimePassword")}
         >
