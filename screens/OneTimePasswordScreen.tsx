@@ -45,7 +45,7 @@ export default function OneTimePasswordScreen() {
             "h-12 w-full items-center justify-center rounded-xl",
             isValid ? "bg-primary-500" : "bg-neutral-200"
           )}
-          onPress={() => navigation.navigate("PhoneNumber")}
+          onPress={() => navigation.navigate("PhoneVerified")}
         >
           <Text className="text-[16px] font-bold text-white">Continue</Text>
         </Pressable>
