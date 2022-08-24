@@ -6,6 +6,7 @@ import ChooseAccountTypeScreen from "./screens/ChooseAccountTypeScreen";
 import ConfirmEmailScreen from "./screens/ConfirmEmailScreen";
 import LoginScreen from "./screens/LoginScreen";
 import OnBoardingScreen from "./screens/OnBoardingScreen";
+import OneTimePasswordScreen from "./screens/OneTimePasswordScreen";
 import PhoneNumberScreen from "./screens/PhoneNumberScreen";
 import SelectCountryScreen from "./screens/SelectCountryScreen";
 import SignUpScreen from "./screens/SignUpScreen";
@@ -20,6 +21,7 @@ export type RootStackParamList = {
   ChooseAccountType: undefined;
   SelectCountry: undefined;
   PhoneNumber: undefined;
+  OneTimePassword: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -67,6 +69,7 @@ function AppStack() {
       />
       <Stack.Screen name="SelectCountry" component={SelectCountryScreen} />
       <Stack.Screen name="PhoneNumber" component={PhoneNumberScreen} />
+      <Stack.Screen name="OneTimePassword" component={OneTimePasswordScreen} />
     </Stack.Navigator>
   );
 }

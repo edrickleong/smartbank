@@ -31,9 +31,9 @@ export default function PhoneNumberScreen() {
         <Text className="mt-2 text-[13px] font-medium text-neutral-600">
           We will send you a verification code to this number.
         </Text>
-        <View className="flex-1 flex-row space-x-1">
+        <View className="mt-4 flex-1 flex-row space-x-1">
           <Pressable
-            className="mt-4 h-14 flex-row items-center space-x-1 rounded-lg border-[1px] border-[#EAEAEA] bg-white px-3.5"
+            className="h-14 flex-row items-center space-x-1 rounded-lg border-[1px] border-[#EAEAEA] bg-white px-3.5"
             style={{
               shadowColor: "rgb(168, 175, 182)",
               shadowRadius: 32,
@@ -52,7 +52,7 @@ export default function PhoneNumberScreen() {
             <Ionicons name="chevron-down" size={24} color="#2791B5" />
           </Pressable>
           <View
-            className="mt-4 h-14 flex-1 flex-row items-center rounded-lg border-[1px] border-[#EAEAEA] bg-white px-3.5"
+            className="h-14 flex-1 flex-row items-center rounded-lg border-[1px] border-[#EAEAEA] bg-white px-3.5"
             style={{
               shadowColor: "rgb(168, 175, 182)",
               shadowRadius: 32,
@@ -81,7 +81,7 @@ export default function PhoneNumberScreen() {
             "h-12 w-full items-center justify-center rounded-xl",
             "bg-primary-500"
           )}
-          onPress={() => navigation.navigate("PhoneNumber")}
+          onPress={() => navigation.navigate("OneTimePassword")}
         >
           <Text className="text-[16px] font-bold text-white">Continue</Text>
         </Pressable>
