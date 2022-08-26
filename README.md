@@ -10,7 +10,7 @@
     <br />
     Designed by <a href="https://twitter.com/uiuxadrian">Adrian Kuleszo</a>
     <br />
-    Demo app created by <a href="https://twitter.com/edrickleong">Edrick Leong</a>
+    Demo app created by <a href="https://twitter.com/edrickleong_">Edrick Leong</a>
     <br />
     <br />
     <a href="https://github.com/edrickleong/smartbank/issues">Report Bug</a>
@@ -20,20 +20,63 @@
 
 ![Mockup](docs/images/mockup.png)
 
-This project uses the designs from Adrian Kuleszo's
+This project uses designs from Adrian Kuleszo's
 book [The UI Professional's Design Manual](https://uiadrian.gumroad.com/l/design-manual). Support him by purchasing a
 copy of his book on [Gumroad](https://uiadrian.gumroad.com/l/design-manual).
 
-## Getting Started
+## 📱 Flows
 
-### Prerequisites
+These are groups of screens based on the design manual above.
+Some of these screens have been created without adding functionality yet. For example,
+the phone verifications screens have been created but do not integrate with a phone verification service.
 
-- [React Native](https://reactnative.dev/)
-- [Expo](https://expo.dev/)
-- [Supabase](https://supabase.com/)
+- [x] Walkthrough
+- [x] Login
+- [x] Account setup
+- [x] Phone verification
+- [ ] Create passcode
+- [ ] Legal information
+- [ ] Notifications
+- [ ] Verify Identity
+- [ ] Selfie
+- [ ] Create a card
+- [ ] Top up account
+- [ ] Home screen
+- [ ] Transfer money
+- [ ] Exchange money
+- [ ] Profile settings
+- [ ] Upload avatar
 
-### Running the application
+## ✨ Features
 
-```shell
+- [x] 🔒 Sign Up / Log In
+- [ ] 📞 Phone Verification
+- [ ] 🔐 Setup PIN + Face ID
+- [ ] 📷 Photo Verification
+- [ ] 🔔 Request for Notifications
+- [ ] 👤 Upload Avatar
+
+## 🔧 Built with
+- [Expo](https://expo.dev/) - A framework for building React Native apps
+- [NativeWind](https://www.nativewind.dev/) - Tailwind CSS for React Native
+- [Supabase](https://supabase.com/) - Auth & Database platform
+
+## 🚀 Local Development
+
+1. Clone the repo
+
+```sh
+git clone https://github.com/edrickleong/smartbank
+```
+
+2. Install NPM packages
+
+```sh
+yarn install
+```
+
+3. Run Development instance
+
+```
 yarn start
 ```
