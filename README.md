@@ -24,6 +24,11 @@ This project uses designs from Adrian Kuleszo's
 book [The UI Professional's Design Manual](https://uiadrian.gumroad.com/l/design-manual). Support him by purchasing a
 copy of his book on [Gumroad](https://uiadrian.gumroad.com/l/design-manual).
 
+## Demo
+<p align="center">
+  <img src="docs/demo.gif" alt="demo" width="360" />
+</p>
+
 ## 📱 Flows
 
 These are groups of screens based on the design manual above.
