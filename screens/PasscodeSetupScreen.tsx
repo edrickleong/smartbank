@@ -7,7 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { MainNavigationProps } from "../navigation/MainStack";
 import { classNames } from "../utils/classNames";
 
-export default function PhoneVerifiedScreen() {
+export default function PasscodeSetupScreen() {
   const navigation = useNavigation<MainNavigationProps>();
 
   return (
@@ -28,21 +28,18 @@ export default function PhoneVerifiedScreen() {
           <Image
             style={{ resizeMode: "contain" }}
             className="w-full flex-1"
-            source={require("../assets/phone-verified.png")}
+            source={require("../assets/passcode_setup.png")}
           />
         </View>
         <View className="px-4">
-          <Text className="mt-1 text-center text-[34px] font-bold text-white">
-            We’ve verified your phone number
-          </Text>
-          <Text className="mt-2 mb-8 text-center text-[13px] font-medium text-neutral-300">
-            We just sent you an email to office@designmesocial.com
+          <Text className="mt-1 mb-9 text-center text-[34px] font-bold text-white">
+            Your passcode has been set up
           </Text>
           <Pressable
             className={classNames(
               "mb-4 h-12 w-full items-center justify-center rounded-xl bg-[#E8F569]"
             )}
-            onPress={() => navigation.navigate("CreatePasscode")}
+            onPress={() => {}}
           >
             <Text
               className={classNames("text-[16px] font-bold text-[#134555]")}

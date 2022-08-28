@@ -5,12 +5,12 @@ import { classNames } from "../utils/classNames";
 
 const maximumLength = 6;
 
-type OTPInputProps = {
+type PinInputProps = {
   code: string;
   setCode: (code: string) => void;
 };
 
-const OTPInput = ({ code, setCode }: OTPInputProps) => {
+const PinInput = ({ code, setCode }: PinInputProps) => {
   const inputRef = useRef<TextInput>();
 
   const [isInputBoxFocused, setIsInputBoxFocused] = useState(false);
@@ -81,4 +81,4 @@ const OTPInput = ({ code, setCode }: OTPInputProps) => {
   );
 };
 
-export default OTPInput;
+export default PinInput;

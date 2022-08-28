@@ -1,18 +1,22 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import PinInput from "../components/PinInput";
 import { MainNavigationProps } from "../navigation/MainStack";
-import { classNames } from "../utils/classNames";
 
-export default function OneTimePasswordScreen() {
+export default function CreatePasscodeScreen() {
   const navigation = useNavigation<MainNavigationProps>();
-  const [oneTimePassword, setOneTimePassword] = useState("");
+  const [passcode, setPasscode] = useState("");
 
-  const isValid = oneTimePassword.length === 6;
+  useEffect(() => {
+    if (passcode.length === 6) {
+      // TODO: Save passcode
+      navigation.navigate("ConfirmPasscode");
+    }
+  }, [navigation, passcode.length]);
 
   return (
     <SafeAreaView className="flex-1 bg-neutral-50 pt-1 pb-7">
@@ -26,26 +30,14 @@ export default function OneTimePasswordScreen() {
       </View>
       <View className="flex-1 px-4">
         <Text className="mt-1 text-[28px] font-bold text-[#132F38]">
-          Verify your phone number
+          Create passcode
         </Text>
         <Text className="mt-2 text-[13px] font-medium text-neutral-600">
-          Please enter the code we sent to +4472323121
+          You’ll be able to log in to SmartBank using the following passcode.
         </Text>
-        <View className="flex-1 pt-6">
-          <PinInput code={oneTimePassword} setCode={setOneTimePassword} />
+        <View className="flex-1  pt-16">
+          <PinInput code={passcode} setCode={setPasscode} />
         </View>
-      </View>
-      <View className="px-4">
-        <Pressable
-          disabled={!isValid}
-          className={classNames(
-            "h-12 w-full items-center justify-center rounded-xl",
-            isValid ? "bg-primary-500" : "bg-neutral-200"
-          )}
-          onPress={() => navigation.navigate("PhoneVerified")}
-        >
-          <Text className="text-[16px] font-bold text-white">Continue</Text>
-        </Pressable>
       </View>
     </SafeAreaView>
   );

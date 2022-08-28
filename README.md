@@ -39,7 +39,7 @@ the phone verifications screens have been created but do not integrate with a ph
 - [x] Login
 - [x] Account setup
 - [x] Phone verification
-- [ ] Create passcode
+- [x] Create passcode
 - [ ] Legal information
 - [ ] Notifications
 - [ ] Verify Identity
