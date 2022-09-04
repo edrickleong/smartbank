@@ -27,7 +27,7 @@
     "@babel/core": "7.18.13",
     "@types/react": "18.0.17",
     "@types/react-native": "0.69.5",
-    "eslint": "8.22.0",
+    "eslint": "8.23.0",
     "eslint-config-universe": "11.1.0",
     "prettier": "2.7.1",
     "prettier-plugin-tailwindcss": "0.1.13",
