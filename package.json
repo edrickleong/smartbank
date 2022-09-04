@@ -7,7 +7,7 @@
     "@react-navigation/native": "6.0.12",
     "@react-navigation/native-stack": "6.8.0",
     "@supabase/supabase-js": "1.35.6",
-    "expo": "46.0.9",
+    "expo": "46.0.10",
     "expo-linear-gradient": "11.4.0",
     "expo-linking": "3.2.2",
     "nativewind": "2.0.7",

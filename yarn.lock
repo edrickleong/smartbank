@@ -3803,18 +3803,18 @@ expo-modules-autolinking@0.10.3:
     find-up "^5.0.0"
     fs-extra "^9.1.0"
 
-expo-modules-core@0.11.4:
-  version "0.11.4"
-  resolved "https://registry.npmjs.org/expo-modules-core/-/expo-modules-core-0.11.4.tgz"
-  integrity sha512-8dEYICk7hUi1GPz5hWm8dBuZDGc+4Tm7zDhSIhKApo5jY/5vB4Bk+fjPo693iWn6pp3+XBHT8Ri8rJ3G7wH1vQ==
+expo-modules-core@0.11.5:
+  version "0.11.5"
+  resolved "https://registry.npmjs.org/expo-modules-core/-/expo-modules-core-0.11.5.tgz"
+  integrity sha512-KmTHtaL21M1AzKOmu3YM5K8ddCbbr6wgooG4uCb+o+7zZXe+BPP4jAPs5LLez1Et34OQcyjopxUpJ8r43HImvQ==
   dependencies:
     compare-versions "^3.4.0"
     invariant "^2.2.4"
 
-expo@46.0.9:
-  version "46.0.9"
-  resolved "https://registry.npmjs.org/expo/-/expo-46.0.9.tgz"
-  integrity sha512-UsBjm0BL7w+OyF6kypVPrk3jhg9cCXF0D9CaOWQ+cedm7oT4mTVQx9+A45VsDvLzNWBjJejZQZ1PFKqOY5HNcQ==
+expo@46.0.10:
+  version "46.0.10"
+  resolved "https://registry.npmjs.org/expo/-/expo-46.0.10.tgz"
+  integrity sha512-MUDLTnBYOOabzFo2HATTMXiAYoQ4n1IWBM3HlOmsQVoMBKOs6FcZDqte/lwK80KkhHIpr1Q37JD8Dq1Fk4b9eA==
   dependencies:
     "@babel/runtime" "^7.14.0"
     "@expo/cli" "0.2.11"
@@ -3828,7 +3828,7 @@ expo@46.0.9:
     expo-font "~10.2.0"
     expo-keep-awake "~10.2.0"
     expo-modules-autolinking "0.10.3"
-    expo-modules-core "0.11.4"
+    expo-modules-core "0.11.5"
     fbemitter "^3.0.0"
     getenv "^1.0.0"
     invariant "^2.2.4"
