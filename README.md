@@ -80,7 +80,10 @@ git clone https://github.com/edrickleong/smartbank
 yarn install
 ```
 
-3. Run Development instance
+3. Copy the `.env.example` file as a `.env` file and add the missing environment variables.
+You will need to sign up for a [Supabase account](https://supabase.com/) and create a project.
+
+4. Run the development server
 
 ```
 yarn start
