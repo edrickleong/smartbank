@@ -5803,10 +5803,10 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-nativewind@2.0.7:
-  version "2.0.7"
-  resolved "https://registry.npmjs.org/nativewind/-/nativewind-2.0.7.tgz"
-  integrity sha512-LMluvKclbOcjVl2IzMUJcdTQfsKfyRA5wxfv7IVtG9tkUDiXaQXTxA3WqMM+yptB6+iOgXXoiGmagXZaUlSCTA==
+nativewind@2.0.8:
+  version "2.0.8"
+  resolved "https://registry.npmjs.org/nativewind/-/nativewind-2.0.8.tgz"
+  integrity sha512-gC/eJ13pBbwTFRGcYobZn4H2+fAC6eVqHD6vkMzwlXVUArAXzKgEKF0evJLzB6vIsEmI1pOlNVEZN3e9lJgUmg==
   dependencies:
     "@babel/generator" "^7.18.7"
     "@babel/helper-module-imports" "7.18.6"
