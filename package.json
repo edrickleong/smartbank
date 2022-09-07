@@ -26,7 +26,7 @@
   "devDependencies": {
     "@babel/core": "7.19.0",
     "@types/react": "18.0.18",
-    "@types/react-native": "0.69.5",
+    "@types/react-native": "0.69.8",
     "eslint": "8.23.0",
     "eslint-config-universe": "11.1.0",
     "prettier": "2.7.1",
