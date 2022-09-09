@@ -1931,10 +1931,10 @@
   resolved "https://registry.npmjs.org/@types/qs/-/qs-6.9.7.tgz"
   integrity sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==
 
-"@types/react-native@0.69.5":
-  version "0.69.5"
-  resolved "https://registry.npmjs.org/@types/react-native/-/react-native-0.69.5.tgz"
-  integrity sha512-mSUCuGUsW2kJlZiu4GmdYVDKZX/52iyC9rm6dxAmflJj1b7kSO/CMSDy5WbcfS8QerxTqbYGTrIwHD0GnXHzbQ==
+"@types/react-native@0.69.8":
+  version "0.69.8"
+  resolved "https://registry.npmjs.org/@types/react-native/-/react-native-0.69.8.tgz"
+  integrity sha512-KW5KQdg4vjG7Mo2muCTRSe3CwVNEROa4Hlh7wIkfv+be92jdFwq6tf+i1q7dD3wDnUinc/cVi/6/PJbGpbshEA==
   dependencies:
     "@types/react" "*"
 
