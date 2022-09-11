@@ -1413,10 +1413,10 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
-"@hookform/resolvers@2.9.7":
-  version "2.9.7"
-  resolved "https://registry.npmjs.org/@hookform/resolvers/-/resolvers-2.9.7.tgz"
-  integrity sha512-BloehX3MOLwuFEwT4yZnmolPjVmqyn8VsSuodLfazbCIqxBHsQ4qUZsi+bvNNCduRli1AGWFrkDLGD5QoNzsoA==
+"@hookform/resolvers@2.9.8":
+  version "2.9.8"
+  resolved "https://registry.npmjs.org/@hookform/resolvers/-/resolvers-2.9.8.tgz"
+  integrity sha512-iVVjH0USq+1TqDdGkWe2M1x7Wn5OFPgVRo7CbWFsXTqqXqCaZtZcnzJu+UhljCWbthFWxWGXKLGYUDPZ04oVvQ==
 
 "@humanwhocodes/config-array@^0.10.4":
   version "0.10.4"
