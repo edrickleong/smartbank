@@ -24,7 +24,7 @@
     "zod": "3.19.1"
   },
   "devDependencies": {
-    "@babel/core": "7.19.0",
+    "@babel/core": "7.19.1",
     "@types/react": "18.0.19",
     "@types/react-native": "0.69.8",
     "eslint": "8.23.1",
