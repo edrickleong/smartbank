@@ -6,7 +6,7 @@
     "@react-native-async-storage/async-storage": "1.18.2",
     "@react-navigation/native": "6.1.1",
     "@react-navigation/native-stack": "6.9.7",
-    "@supabase/supabase-js": "1.35.7",
+    "@supabase/supabase-js": "2.39.2",
     "expo": "49.0.3",
     "expo-linear-gradient": "~12.3.0",
     "expo-linking": "~5.0.2",
