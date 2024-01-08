@@ -1,9 +1,7 @@
 // tailwind.config.js
 module.exports = {
-  content: [
-    "./screens/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  presets: [require("nativewind/preset")],
   theme: {
     extend: {
       colors: {
@@ -34,4 +32,4 @@ module.exports = {
       },
     },
   },
-};
+}

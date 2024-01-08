@@ -1,0 +1,8 @@
+{
+  "scheme": "smartbank",
+  "userInterfaceStyle": "light",
+  "ios": {
+    "bundleIdentifier": "com.edrickleong.smartbank"
+  },
+  "plugins": ["expo-router"]
+}

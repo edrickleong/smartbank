@@ -1,9 +1,9 @@
-import { Ionicons } from "@expo/vector-icons";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigation } from "@react-navigation/native";
-import * as Linking from "expo-linking";
-import { useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Ionicons } from "@expo/vector-icons"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { makeRedirectUri } from "expo-auth-session"
+import { Link, router } from "expo-router"
+import { useEffect } from "react"
+import { Controller, useForm } from "react-hook-form"
 import {
   ActivityIndicator,
   Alert,
@@ -13,20 +13,18 @@ import {
   Text,
   TextInput,
   View,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { z } from "zod";
+} from "react-native"
+import { SafeAreaView } from "react-native-safe-area-context"
+import { z } from "zod"
 
-import { LoginNavigationProps } from "../navigation/LoginStack";
-import { supabase } from "../supabase";
-import { classNames } from "../utils/classNames";
+import { supabase } from "@/supabase"
+import { cn } from "@/utils/cn"
 
 const schema = z.object({
   email: z.string().email(),
-});
+})
 
-export default function SignUpScreen() {
-  const navigation = useNavigation<LoginNavigationProps>();
+export default function Page() {
   const {
     control,
     handleSubmit,
@@ -35,23 +33,39 @@ export default function SignUpScreen() {
   } = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     mode: "onChange",
-  });
+  })
 
   useEffect(() => {
-    setFocus("email");
-  }, []);
+    setFocus("email")
+  }, [setFocus])
 
+  const signUp = handleSubmit(async ({ email }) => {
+    const redirectURL = makeRedirectUri()
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo: redirectURL,
+      },
+    })
+
+    if (error) {
+      Alert.alert("An error occurred", error.message, [{ text: "OK" }])
+      return
+    }
+
+    router.push({ pathname: "/confirm-email", params: { email } })
+  })
   return (
-    <SafeAreaView className="flex-1 bg-white pt-1">
+    <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        className="flex-1"
+        style={{ flex: 1 }}
       >
-        <View className="flex-1 pb-7">
+        <View className="flex-1 pb-7 pt-1">
           <View className="h-11 w-full justify-center">
             <Pressable
-              className="absolute top-0 left-0 h-11 w-11 items-center justify-center"
-              onPress={() => navigation.goBack()}
+              className="absolute left-0 top-0 h-11 w-11 items-center justify-center"
+              onPress={() => router.back()}
             >
               <Ionicons name="arrow-back" size={24} color="#2791B5" />
             </Pressable>
@@ -83,16 +97,13 @@ export default function SignUpScreen() {
             />
             <Text className="mt-4 w-full text-center text-[13px] font-bold text-primary-500">
               {"Have an account? "}
-              <Text
-                onPress={() => navigation.navigate("Login")}
-                className="text-primary-400"
-              >
+              <Link href="/login" className="text-primary-400">
                 Log in here.
-              </Text>
+              </Link>
             </Text>
           </View>
           <View className="px-4">
-            <Text className="mt-4 mb-7 w-full text-center text-[11px] text-black">
+            <Text className="mb-7 mt-4 w-full text-center text-[11px] text-black">
               {"By registering, you accept our "}
               <Text className="font-bold text-primary-400">
                 Terms and Conditions
@@ -105,32 +116,16 @@ export default function SignUpScreen() {
             </Text>
             <Pressable
               disabled={isSubmitting}
-              className={classNames(
-                "h-12 w-full flex-row items-center justify-center space-x-2 rounded-xl",
-                isValid ? "bg-primary-500" : "bg-neutral-200"
+              className={cn(
+                "h-12 w-full flex-row items-center justify-center gap-x-2 rounded-xl",
+                isValid ? "bg-primary-500" : "bg-neutral-200",
               )}
-              onPress={handleSubmit(async ({ email }) => {
-                const redirectURL = Linking.createURL("");
-
-                const { error } = await supabase.auth.signIn(
-                  { email },
-                  { redirectTo: redirectURL }
-                );
-
-                if (error) {
-                  Alert.alert("An error occurred", error.message, [
-                    { text: "OK" },
-                  ]);
-                  return;
-                }
-
-                navigation.navigate("ConfirmEmail", { email });
-              })}
+              onPress={signUp}
             >
               <Text
-                className={classNames(
+                className={cn(
                   "text-[16px] font-bold",
-                  isValid ? "text-white" : "text-neutral-400"
+                  isValid ? "text-white" : "text-neutral-400",
                 )}
               >
                 Continue
@@ -141,5 +136,5 @@ export default function SignUpScreen() {
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
-  );
+  )
 }

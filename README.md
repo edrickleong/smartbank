@@ -77,7 +77,7 @@ git clone https://github.com/edrickleong/smartbank
 2. Install NPM packages
 
 ```sh
-yarn install
+npm install
 ```
 
 3. Copy the `.env.example` file as a `.env` file and add the missing environment variables.
@@ -86,5 +86,5 @@ You will need to sign up for a [Supabase account](https://supabase.com/) and cre
 4. Run the development server
 
 ```
-yarn start
+npm run start
 ```
