@@ -64,3 +64,6 @@ buck-out/
 web-build/
 
 .env
+
+# iOS
+ios

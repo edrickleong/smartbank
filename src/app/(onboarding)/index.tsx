@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons"
 import { LinearGradient } from "expo-linear-gradient"
-import { Link } from "expo-router"
+import { Link, router } from "expo-router"
 import { Alert, Image, Pressable, Text, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
@@ -14,7 +14,13 @@ export default function Page() {
           text: "Cancel",
           style: "cancel",
         },
-        { text: "OK", onPress: () => supabase.auth.signOut() },
+        {
+          text: "OK",
+          onPress: async () => {
+            await supabase.auth.signOut()
+            router.replace("/welcome")
+          },
+        },
       ])
     }
   }

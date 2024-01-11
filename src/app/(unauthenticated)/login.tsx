@@ -35,11 +35,7 @@ export default function Page() {
     mode: "onChange",
   })
 
-  useEffect(() => {
-    setFocus("email")
-  }, [setFocus])
-
-  const signUp = handleSubmit(async ({ email }) => {
+  const login = handleSubmit(async ({ email }) => {
     const redirectURL = makeRedirectUri()
     const { error } = await supabase.auth.signInWithOtp({
       email,
@@ -53,8 +49,9 @@ export default function Page() {
       return
     }
 
-    router.push({ pathname: "/confirm-email", params: { email } })
+    router.navigate({ pathname: "/confirm-email", params: { email } })
   })
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView
@@ -72,10 +69,10 @@ export default function Page() {
           </View>
           <View className="flex-1 px-4">
             <Text className="mt-1 text-[34px] font-bold text-[#0C212C]">
-              What's your email?
+              Login
             </Text>
             <Text className="mt-2 text-[13px] font-medium text-neutral-600">
-              Enter the email address you’d like to use to sign in to SmartBank.
+              Enter the email address you use to sign in to SmartBank.
             </Text>
             <Controller
               control={control}
@@ -83,6 +80,7 @@ export default function Page() {
               rules={{ required: true }}
               render={({ field: { onChange, value, ref } }) => (
                 <TextInput
+                  autoFocus
                   className="mt-6 h-14 w-full rounded-xl border-[1px] border-[#E7EAEB] px-3.5"
                   textContentType="emailAddress"
                   keyboardType="email-address"
@@ -95,32 +93,22 @@ export default function Page() {
                 />
               )}
             />
+
             <Text className="mt-4 w-full text-center text-[13px] font-bold text-primary-500">
-              {"Have an account? "}
-              <Link href="/login" className="text-primary-400">
-                Log in here.
+              {"Don't have an account? "}
+              <Link href="/sign-up" className="text-primary-400">
+                Sign Up
               </Link>
             </Text>
           </View>
           <View className="px-4">
-            <Text className="mb-7 mt-4 w-full text-center text-[11px] text-black">
-              {"By registering, you accept our "}
-              <Text className="font-bold text-primary-400">
-                Terms and Conditions
-              </Text>
-              {" and "}
-              <Text className="font-bold text-primary-400 ">
-                Privacy Policy
-              </Text>
-              . Your data will be securely encrypted with TLS.
-            </Text>
             <Pressable
               disabled={isSubmitting}
               className={cn(
                 "h-12 w-full flex-row items-center justify-center gap-x-2 rounded-xl",
                 isValid ? "bg-primary-500" : "bg-neutral-200",
               )}
-              onPress={signUp}
+              onPress={login}
             >
               <Text
                 className={cn(

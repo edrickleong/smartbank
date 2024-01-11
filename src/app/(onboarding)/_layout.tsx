@@ -8,16 +8,16 @@ import { supabase } from "@/supabase"
 
 export default function Layout() {
   const [isLoading, setIsLoading] = useState(true)
-  const url = Linking.useURL()
 
   useEffect(() => {
-    const getSession = async () => {
+    const redirectIfUnauthenticated = async () => {
       const { data, error } = await supabase.auth.getSession()
       if (!error && data.session) {
         setIsLoading(false)
         return
       }
 
+      const url = await Linking.getInitialURL()
       if (url) {
         try {
           const session = await createSessionFromUrl(url)
@@ -33,7 +33,7 @@ export default function Layout() {
       router.replace("/welcome")
       setIsLoading(false)
     }
-    getSession()
+    redirectIfUnauthenticated()
   }, [])
 
   if (isLoading) return <ActivityIndicator />
@@ -41,9 +41,8 @@ export default function Layout() {
   return <Slot />
 }
 
-const createSessionFromUrl = async (url: string) => {
+export const createSessionFromUrl = async (url: string) => {
   const { params, errorCode } = QueryParams.getQueryParams(url)
-
   if (errorCode) throw new Error(errorCode)
   const { access_token, refresh_token } = params
 
