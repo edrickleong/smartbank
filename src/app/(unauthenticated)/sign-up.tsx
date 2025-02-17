@@ -2,7 +2,6 @@ import { Ionicons } from "@expo/vector-icons"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { makeRedirectUri } from "expo-auth-session"
 import { Link, router } from "expo-router"
-import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 import {
   ActivityIndicator,
@@ -36,7 +35,8 @@ export default function Page() {
   })
 
   const signUp = handleSubmit(async ({ email }) => {
-    const redirectURL = makeRedirectUri()
+    const redirectURL = makeRedirectUri({})
+
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {

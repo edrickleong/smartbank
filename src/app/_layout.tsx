@@ -1,17 +1,19 @@
 import "@/global.css"
-import * as Linking from "expo-linking"
-import { Slot } from "expo-router"
+import { router, Slot } from "expo-router"
 import React, { useEffect } from "react"
-
+import * as Linking from "expo-linking"
 import { createSessionFromUrl } from "@/app/(onboarding)/_layout"
 
 export default function Layout() {
   useEffect(() => {
     const { remove } = Linking.addEventListener(
       "url",
-      (res: { url: string }) => {
+      async (res: { url: string }) => {
         if (res.url) {
-          createSessionFromUrl(res.url)
+          const session = await createSessionFromUrl(res.url)
+          if (session) {
+            router.replace("/")
+          }
         }
       },
     )

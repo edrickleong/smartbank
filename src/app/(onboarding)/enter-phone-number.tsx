@@ -1,5 +1,4 @@
 import { Ionicons } from "@expo/vector-icons"
-import { useNavigation } from "@react-navigation/native"
 import { router } from "expo-router"
 import { useState } from "react"
 import { Pressable, Text, TextInput, View } from "react-native"

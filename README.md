@@ -25,6 +25,7 @@ book [The UI Professional's Design Manual](https://uiadrian.gumroad.com/l/design
 copy of his book on [Gumroad](https://uiadrian.gumroad.com/l/design-manual).
 
 ## Demo
+
 <p align="center">
   <img src="docs/demo.gif" alt="demo" width="360" />
 </p>
@@ -62,29 +63,41 @@ the phone verifications screens have been created but do not integrate with a ph
 - [ ] 👤 Upload Avatar
 
 ## 🔧 Built with
+
 - [Expo](https://expo.dev/) - A framework for building React Native apps
 - [NativeWind](https://www.nativewind.dev/) - Tailwind CSS for React Native
 - [Supabase](https://supabase.com/) - Auth & Database platform
 
 ## 🚀 Local Development
 
-1. Clone the repo
+1. Install Bun
+
+```shell
+brew install bun
+```
+
+2Clone the repo
 
 ```sh
 git clone https://github.com/edrickleong/smartbank
 ```
 
-2. Install NPM packages
+3. Install NPM packages
 
 ```sh
-npm install
+bun install
 ```
 
-3. Copy the `.env.example` file as a `.env` file and add the missing environment variables.
-You will need to sign up for a [Supabase account](https://supabase.com/) and create a project.
+4. Copy the `.env.example` file as a `.env` file and add the missing environment variables.
+   You will need to sign up for a [Supabase account](https://supabase.com/) and create a project.
+   You will need to update your Site URL under Authentication > URL Configuration > Site URL to
+   `com.edrickleong.smartbank`.
 
-4. Run the development server
+```shell
+5. Run the development server
 
 ```
-npm run start
+
+bun start
+
 ```
